@@ -1,13 +1,24 @@
 # macOS folder metadata (created automatically by Finder)
 .DS_Store
 
+# Windows folder metadata (in case someone on Windows contributes)
+Thumbs.db
+desktop.ini
+
 # Editor settings that are personal to your machine
 .vscode/
+.kiro/
 .idea/
 *.swp
 
+# Log and temporary files
+*.log
+*.tmp
+*~
+
 # Secrets. Never commit these to a public repo.
 .env
+.env.*
 .dev.vars
 
 # Cloudflare's local tool cache (if you ever use the `wrangler` CLI)
