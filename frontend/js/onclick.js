@@ -3,6 +3,7 @@ function toggleCompleted(event) {
     var button = event.currentTarget;
     var isCompleted = button.classList.toggle("completed");
     button.setAttribute("aria-pressed", isCompleted);
+    updateProgress(); // defined in progress.js
 }
 
 // Attach the click handler to every achievement button in the grid.

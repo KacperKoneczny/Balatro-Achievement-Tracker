@@ -1,0 +1,92 @@
+/* Colours taken from the Figma design, stored once so they're easy to change. */
+:root {
+    --background: #d9d9d9;
+    --text: #111111;
+    --green: #0b7f5f;
+    --white: #ffffff;
+}
+
+/* Make width/height include padding and borders (a common CSS reset). */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: var(--background);
+    color: var(--text);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* One centred column that holds the title, progress bar and grid. */
+.page {
+    width: 100%;
+    max-width: 730px;
+    margin: 0 auto;
+    padding: 24px 16px 48px;
+}
+
+/* ---------- Title ---------- */
+.title {
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 48px;
+}
+
+.title h1 {
+    margin: 0;
+    font-weight: 400;
+    font-size: clamp(56px, 18vw, 128px);
+    line-height: 1;
+    letter-spacing: 0.04em;
+}
+
+.title p {
+    margin: 0;
+    font-size: clamp(22px, 6.5vw, 48px);
+    letter-spacing: 0.04em;
+}
+
+/* ---------- Achievement grid ---------- */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px 20px; /* row gap, column gap */
+}
+
+.grid button {
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    opacity: 0.5; /* not completed yet: faded */
+}
+
+/* Completionist++ sits on its own row in the middle 3 of the 5 columns.
+   Grid lines are numbered 1 to 6, so "2 / 5" means "start at line 2, stop at line 5".
+   The tile then only uses 2/3 of that space, and justify-self keeps it centred. */
+.grid button.final {
+    grid-column: 2 / 5;
+    width: 66.667%;
+    justify-self: center;
+    margin-top: 15px;
+}
+
+.grid button.completed {
+    opacity: 1;
+}
+
+/* Show a clear outline when someone uses the keyboard (Tab key) to move around. */
+.grid button:focus-visible {
+    outline: 3px solid var(--green);
+    outline-offset: 2px;
+}
+
+.image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+}
