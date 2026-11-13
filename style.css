@@ -1,0 +1,20 @@
+.grid {
+    display: grid;
+    grid-template-columns: 200px 200px 200px ;
+    background-color: blue;
+    padding: 10px;
+    gap: 10px;
+}
+
+.grid button {
+  border: 1px solid black;
+  padding: 10px;
+  gap: 10px;
+  text-align: center;
+  opacity: 50%;
+}
+
+.image {
+  height: 150px;
+  width: 150px;
+}
