@@ -1,10 +1,12 @@
-function fullOpacity() {
-    var element = document.getElementById('id');
-
-    if (element.style.opacity === "1") {
-        element.style.opacity = "0.5";
-    } else {
-        element.style.opacity = "1";
-    }
+// Switch an achievement between "not done" and "done" when it's clicked.
+function toggleCompleted(event) {
+    var button = event.currentTarget;
+    var isCompleted = button.classList.toggle("completed");
+    button.setAttribute("aria-pressed", isCompleted);
 }
-document.querySelector("button").addEventListener("click", fullOpacity);
+
+// Attach the click handler to every achievement button in the grid.
+var buttons = document.querySelectorAll(".grid button");
+buttons.forEach(function (button) {
+    button.addEventListener("click", toggleCompleted);
+});
