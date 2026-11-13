@@ -1,0 +1,17 @@
+# macOS folder metadata (created automatically by Finder)
+.DS_Store
+
+# Editor settings that are personal to your machine
+.vscode/
+.idea/
+*.swp
+
+# Secrets. Never commit these to a public repo.
+.env
+.dev.vars
+
+# Cloudflare's local tool cache (if you ever use the `wrangler` CLI)
+.wrangler/
+
+# Downloaded packages (only matters if you add npm later)
+node_modules/
