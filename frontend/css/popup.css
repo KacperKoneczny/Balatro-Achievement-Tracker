@@ -1,0 +1,108 @@
+/* Styles for the achievement popup (the <dialog> in index.html).
+   The colour variables (--background, --text, --green, --white) are defined in style.css. */
+
+/* The dialog itself has no padding, so every pixel of it is covered by .popup-content.
+   That's what lets onclick.js tell "clicked inside the box" apart from "clicked outside". */
+.popup {
+    width: min(90vw, 460px);
+    padding: 0;
+    border: none;
+    border-radius: 24px;
+    background-color: var(--background);
+    color: var(--text);
+}
+
+/* ::backdrop is the layer the browser puts between the popup and the page.
+   A see-through black makes the rest of the page look faded and darker. */
+/* The popup box gets focus when it opens (see openPopup in onclick.js), so the X
+   doesn't light up straight away. It doesn't need a focus outline of its own. */
+.popup:focus {
+    outline: none;
+}
+
+.popup::backdrop {
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+/* Stop the page behind from scrolling while the popup is open. */
+body:has(.popup[open]) {
+    overflow: hidden;
+}
+
+.popup-content {
+    position: relative; /* lets the X button be placed relative to this box */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 28px;
+    text-align: center;
+    font-size: 24px;
+}
+
+.popup-image {
+    display: block;
+    width: 190px;
+    height: 190px;
+    image-rendering: pixelated; /* keeps the pixel art sharp instead of blurry */
+}
+
+.popup-name,
+.popup-content p {
+    margin: 0;
+    font-size: inherit;
+    font-weight: 400;
+}
+
+/* The dark lines between each section. */
+.popup-content hr {
+    width: 60%;
+    margin: 0;
+    border: none;
+    border-top: 3px solid var(--text);
+}
+
+/* ---------- X (close) button, top right ---------- */
+.popup-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    border: 3px solid var(--text);
+    border-radius: 50%; /* turns the square into a circle */
+    background: none;
+    color: var(--text);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* ---------- Complete button ---------- */
+.popup-complete {
+    margin-top: 8px;
+    padding: 10px 46px;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--green);
+    color: var(--white);
+    font: inherit;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+/* Once the achievement is done, the button turns grey. Clicking it again undoes it. */
+.popup-complete[aria-pressed="true"] {
+    background-color: #6b6b6b;
+}
+
+.popup-close:focus-visible,
+.popup-complete:focus-visible {
+    outline: 3px solid var(--green);
+    outline-offset: 2px;
+}
