@@ -49,6 +49,7 @@ function toggleCompleted() {
     openButton.classList.toggle("completed");
     showCompletedState();
     updateProgress(); // defined in progress.js
+    saveCompleted(); // defined in storage.js
 }
 
 gridButtons.forEach(function (button) {
