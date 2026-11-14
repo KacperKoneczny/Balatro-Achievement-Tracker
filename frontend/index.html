@@ -7,8 +7,12 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/progress.css">
     <link rel="stylesheet" href="css/popup.css">
+    <link rel="stylesheet" href="css/background.css">
 </head>
 <body>
+    <!-- The animated swirl behind the page, drawn by background.js.
+         aria-hidden hides it from screen readers because it's only decoration. -->
+    <canvas class="background" aria-hidden="true"></canvas>
     <main class="page">
         <header class="title">
             <h1>Balatro</h1>
@@ -136,5 +140,6 @@
     <script src="js/achievements.js"></script>
     <script src="js/progress.js"></script>
     <script src="js/onclick.js"></script>
+    <script src="js/background.js"></script>
 </body>
 </html>

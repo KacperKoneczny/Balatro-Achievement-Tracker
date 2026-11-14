@@ -4,6 +4,11 @@
     --text: #111111;
     --green: #0b7f5f;
     --white: #ffffff;
+    /* Behind the swirl. You only see it if the swirl can't load. */
+    --page-background: #1b2a30;
+    /* The game's shadows are hard (not blurry) and drop straight down.
+       The parts are: 0 = no sideways shift, 4px = shift down, 0 = no blur, then the colour. */
+    --shadow: 0 4px 0 rgba(0, 0, 0, 0.35);
 }
 
 /* Make width/height include padding and borders (a common CSS reset). */
@@ -15,7 +20,7 @@
 
 body {
     margin: 0;
-    background-color: var(--background);
+    background-color: var(--page-background);
     color: var(--text);
     font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
@@ -33,6 +38,8 @@ body {
     text-align: center;
     text-transform: uppercase;
     margin-bottom: 48px;
+    color: var(--white); /* light text so it reads well on the dark swirl */
+    text-shadow: 0 4px 0 rgba(0, 0, 0, 0.6); /* a hard drop shadow, like the game's text */
 }
 
 .title h1 {
@@ -62,6 +69,8 @@ body {
     background: none;
     cursor: pointer;
     opacity: 0.5; /* not completed yet: faded */
+    /* drop-shadow follows the shape of the image, unlike box-shadow which is always a box. */
+    filter: drop-shadow(var(--shadow));
 }
 
 /* Completionist++ sits on its own row in the middle 3 of the 5 columns.
@@ -78,9 +87,38 @@ body {
     opacity: 1;
 }
 
+/* ---------- Hover animation ---------- */
+/* "transition" tells the browser to animate between the normal look and the hover
+   look instead of jumping straight there. 0.15s is quick enough to feel snappy. */
+.grid button {
+    transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+/* "hover: hover" means "only on devices with a mouse". On phones there's no real
+   hover, and the tile would stay lifted after you tap it. */
+@media (hover: hover) {
+    /* Lift the tile up, make it a little bigger and tilt it, like picking up a card
+       in the game. The shadow moves further down so it looks higher off the page. */
+    .grid button:hover {
+        transform: translateY(-6px) scale(1.05) rotate(-2deg);
+        filter: drop-shadow(0 10px 0 rgba(0, 0, 0, 0.35));
+    }
+}
+
+/* People who turn on "reduce motion" get no movement, just the bigger shadow. */
+@media (prefers-reduced-motion: reduce) {
+    .grid button {
+        transition: none;
+    }
+
+    .grid button:hover {
+        transform: none;
+    }
+}
+
 /* Show a clear outline when someone uses the keyboard (Tab key) to move around. */
 .grid button:focus-visible {
-    outline: 3px solid var(--green);
+    outline: 3px solid var(--white); /* white shows up better than green on the swirl */
     outline-offset: 2px;
 }
 

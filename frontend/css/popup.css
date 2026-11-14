@@ -10,6 +10,7 @@
     border-radius: 24px;
     background-color: var(--background);
     color: var(--text);
+    box-shadow: var(--shadow); /* --shadow is defined in style.css */
 }
 
 /* ::backdrop is the layer the browser puts between the popup and the page.
@@ -92,7 +93,7 @@ body:has(.popup[open]) {
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow);
     cursor: pointer;
 }
 

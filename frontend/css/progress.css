@@ -8,6 +8,7 @@
     border: 1px solid var(--green);
     border-radius: 16px;
     overflow: hidden; /* keeps the green fill inside the rounded corners */
+    box-shadow: var(--shadow); /* --shadow is defined in style.css */
 }
 
 .progress-fill {
